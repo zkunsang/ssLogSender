@@ -25,7 +25,7 @@ const COLLECTION_LIST = {
     PRODUCT: 'product'
 }
 
-const SOURCE_DB = 'log_backup';
+const SOURCE_DB = 'live_temp';
 
 async function start() {
     const connection = await MongoConnectionHelper.setConnection(configs.dbMongoLog);
@@ -125,6 +125,7 @@ function parseLog(source, sendData) {
 
 async function sendData(data, collectionName) {
     const { source, dataList } = data;
+    
     clientSocket.sendMessage({ source, dataList, collectionName });
 }
 
