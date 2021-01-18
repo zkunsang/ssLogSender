@@ -6,6 +6,5 @@ const App = require(`./configs/${nodeEnv}/app.json`);
 
 module.exports = {
     dbMongoLog,
-    fluent,
     App,
 }

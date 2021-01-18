@@ -25,7 +25,7 @@ const COLLECTION_LIST = {
     PRODUCT: 'product'
 }
 
-const SOURCE_DB = 'live_temp';
+const SOURCE_DB = configs.dbMongoLog.sourceDb;
 
 async function start() {
     const connection = await MongoConnectionHelper.setConnection(configs.dbMongoLog);
