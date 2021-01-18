@@ -25,6 +25,10 @@ class DateUtil {
         return moment(ds, dateFormat).unix();
     }
 
+    dsToDate(ds, dateFormat = defaultDateFormat) {
+        return moment(ds, dateFormat);
+    }
+
     utsToDs(uts, dateFormat = defaultDateFormat) {
         const length = uts.toString().length;
         if (length > 10)
