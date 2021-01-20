@@ -54,9 +54,11 @@ async function start() {
         }
 
         clientSocket.on('message', async(data) => {
+		console.log(data)
             const source = data.source;
         
-            const { dataList, connection } = dbDataList[source]
+            const { dataList, connection } = dbDataList[source];
+	
             for(const data of dataList) {
                 await connection.deleteOne({_id: ObjectID(data._id)});
             }
@@ -114,10 +116,7 @@ function parseLog(source, sendData) {
         }
         catch(err) {
             if (err instanceof MongoError) {
-                // dropCollection
-                if(err.codeName == "NamespaceNotFound") {
-                    eventEmitter.emit(source);
-                }
+                setTimeout(() => eventEmitter.emit(source), 1000);
             }
         }
     }
