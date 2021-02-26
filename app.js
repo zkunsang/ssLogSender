@@ -53,6 +53,11 @@ async function start() {
             setTimeout(() => eventEmitter.emit(source), 1000);
         }
 
+	setInterval(() => { 
+		console.log("server ping send");
+		clientSocket.sendMessage({"source":"ping"}); }, 1000 * 60);
+	
+
         clientSocket.on('message', async(data) => {
 		console.log(data)
             const source = data.source;
@@ -65,6 +70,7 @@ async function start() {
         
             dbDataList[source] = null;
             setTimeout(() => eventEmitter.emit(source), 1000);
+	
         });
 
         clientSocket.on('error', (err) => {
